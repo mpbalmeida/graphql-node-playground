@@ -1,5 +1,7 @@
 const { GraphQLServer } = require('graphql-yoga');
 
+//add root field greet inside the Query
+//the return type of greet should be non nullable String
 const typeDefs = `
 type Query {
  info: String!
@@ -8,7 +10,9 @@ type Query {
 
 const resolvers = {
     Query: {
-        info: () => 'Hello GraphQL devs!'
+        info: () => 'Hello GraphQL devs!',
+        // create a resolver for greet field
+        //return the message hello world from the greet resolver
     }
 }
 
