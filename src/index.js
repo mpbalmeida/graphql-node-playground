@@ -5,12 +5,14 @@ const { GraphQLServer } = require('graphql-yoga');
 const typeDefs = `
 type Query {
  info: String!
+ greet: String!
 }
 `;
 
 const resolvers = {
     Query: {
         info: () => 'Hello GraphQL devs!',
+        greet: () => 'hello world'
         // create a resolver for greet field
         //return the message hello world from the greet resolver
     }
