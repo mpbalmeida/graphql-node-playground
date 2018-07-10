@@ -27,7 +27,7 @@ const typeDefs = `
 type Query {
  info: String!
  feed : [Link!]!
- getLink(Id: ID!): Link
+ getLink(id: ID!): Link
 }
 type Link {
     id: ID!
@@ -40,10 +40,9 @@ const resolvers = {
     Query: {
         info: () => 'Hello GraphQL devs !!',
         feed: () => links, //first execution
-        //write resolver for getLink
-        //get the id
-        //find the link by id
-        //return the link
+        getLink: (root, { id }) => {
+            return links.find(link => link.id === id);
+        }
 
     },
     Link: {
