@@ -21,11 +21,13 @@ let links = [
         url: 'www.fullstackhour.com',
         description: 'NodeJs course'
     }
-]
+];
+
 const typeDefs = `
 type Query {
  info: String!
  feed : [Link!]!
+ getLink(Id: ID!): Link
 }
 type Link {
     id: ID!
@@ -37,7 +39,12 @@ type Link {
 const resolvers = {
     Query: {
         info: () => 'Hello GraphQL devs !!',
-        feed: () => links //first execution
+        feed: () => links, //first execution
+        //write resolver for getLink
+        //get the id
+        //find the link by id
+        //return the link
+
     },
     Link: {
         id(root) {
