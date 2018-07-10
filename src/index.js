@@ -8,7 +8,7 @@ type Query {
 
 const resolvers = {
     Query: {
-        info: () => 'Hello GraphQL devs!'
+        info: () => 'Hello GraphQL devs !!'
     }
 }
 
