@@ -27,7 +27,7 @@ const typeDefs = `
 type Query {
  info: String!
  feed : [Link!]!
- getLink(Id: ID!): Link
+ getLink(id: ID!): Link
 }
 type Link {
     id: ID!
