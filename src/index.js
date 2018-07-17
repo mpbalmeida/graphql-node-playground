@@ -22,26 +22,24 @@ let links = [
         description: 'NodeJs course'
     }
 ];
-
-const typeDefs = `
-type Query {
- info: String!
- feed : [Link!]!
- getLink(id: ID!): Link
-}
-type Link {
-    id: ID!
-    url : String!
-    description: String!
-}
-`;
-
+let idCount = links.length;
 const resolvers = {
     Query: {
         info: () => 'Hello GraphQL devs !!',
         feed: () => links,
         getLink: (root, { id }) => links.find(link => link.id === id)
 
+    },
+    Mutation: {
+        post(root, { url, description }) {
+            const link = {
+                id: `link-${idCount++}`,
+                url,
+                description
+            };
+            links.push(link);
+            return link;
+        }
     },
     Link: {
         id(root) {
@@ -59,7 +57,7 @@ const resolvers = {
 }
 
 const server = new GraphQLServer({
-    typeDefs,
+    typeDefs: './src/schema.graphql',
     resolvers
 });
 server.start(() => console.log('server is running at localhost:4000'));
