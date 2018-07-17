@@ -39,13 +39,8 @@ type Link {
 const resolvers = {
     Query: {
         info: () => 'Hello GraphQL devs !!',
-        feed: () => links, //first execution
+        feed: () => links,
         getLink: (root, { id }) => links.find(link => link.id === id)
-
-        //write resolver for getLink
-        //get the id
-        //find the link by id
-        //return the link
 
     },
     Link: {
