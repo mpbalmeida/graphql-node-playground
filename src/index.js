@@ -39,20 +39,11 @@ const resolvers = {
             };
             links.push(link);
             return link;
-        }
+        },
+        //updateLink
+
+        //deleteLink
     },
-    Link: {
-        id(root) {
-            console.log(root)
-            return root.id;
-        },
-        url(root) {
-            return root.url
-        },
-        description(root) {
-            return root.description
-        }
-    }
 
 }
 
