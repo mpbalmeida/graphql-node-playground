@@ -13,49 +13,34 @@ const links = [
     }
 ];
 
-//add root field greet inside the Query
-//the return type of greet should be non nullable String
-const typeDefs = `
-type Query {
- info: String!
- greet: String!
- feed: [Link!]!
- getLink(id: ID!): Link
-}
-type Link {
-    id: ID!
-    url: String!
-    description: String!
-}
-`;
-
+let idCount = links.length + 1;
 const resolvers = {
     Query: {
         info: () => 'Hello GraphQL devs!',
         greet: () => 'hello world',
         feed: () => links,
-        getLink(root, args) {
+        getLink: (root, args) => {
             const id = parseInt(args.id);
             return links.find(link => link.id === id);
         }
         // create a resolver for greet field
         //return the message hello world from the greet resolver
     },
-    Link: {
-        id(root) {
-            return root.id;
-        },
-        url(root) {
-            return root.url;
-        },
-        description(root) {
-            return root.description;
+    Mutation: {
+        post: (root, {url, description}) => {
+            const link = {
+                id: idCount++,
+                url,
+                description
+            };
+            links.push(link);
+            return link;
         }
     }
 };
 
 const server = new GraphQLServer({
-    typeDefs,
+    typeDefs: './src/schema.graphql',
     resolvers
 });
 server.start(() => console.log('server is running at localhost:4000'));
