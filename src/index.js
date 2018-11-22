@@ -35,6 +35,24 @@ const resolvers = {
             };
             links.push(link);
             return link;
+        },
+        updateLink: (root, {id, url, description}) => {
+            id = parseInt(id);
+            const index = links.findIndex(link => link.id === id);
+            if (url) {
+                links[index].url = url;
+            }
+            if (description) {
+                links[index].description = description;
+            }
+            return links[index];
+        },
+        deleteLink: (url, {id}) => {
+            id = parseInt(id);
+            const index = links.findIndex(link => link.id === id);
+            links.splice(index, 1);
+
+            return links[index];
         }
     }
 };
